@@ -2,9 +2,9 @@
 var express = require('express');
 var app = express.createServer();
 
-app.get('/', function(req, res){
-    res.send('Hello World');
-});
+//app.get('/', function(req, res){
+//    res.send('Hello World');
+//});
 
 app.configure('development', function(){
     app.use(express.static(__dirname + '/public'));
@@ -15,9 +15,27 @@ app.listen(3000);
 
 var io = require('socket.io').listen(8080);
 
+var buffer = [];
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  socket.emit('chat', buffer);
+  socket.broadcast.emit('chat','Nuevo usuario conectado');
 });
+
+/*
+var buffer = [];
+io.on('connection', function(client){
+    client.send({ buffer: buffer });
+    client.broadcast({ announcement: client.sessionId + ' connected' });
+
+    client.on('message', function(message){
+        var msg = { message: [client.sessionId, message] };
+        buffer.push(msg);
+        if (buffer.length > 15) buffer.shift();
+        client.broadcast(msg);
+    });
+
+    client.on('disconnect', function(){
+        client.broadcast({ announcement: client.sessionId + ' disconnected' });
+    });
+});*/
+
