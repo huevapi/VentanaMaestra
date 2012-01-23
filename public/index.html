@@ -1,14 +1,27 @@
+<!DOCTYPE html>
 <html>
 <head>
-<script src="http://192.168.10.123:8080/socket.io/socket.io.js"></script>
+	<title>Huevapi Chat!</title>
+	<link href="stylesheets/blueprint.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<script>
-  var socket = io.connect('http://192.168.10.23:8080');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
+
+<div id="chat">
+
+<div id="previous_chat_section">
+	
+</div>	
+
+<div id="current_chat_section">
+	<input type="text" id="current_text"/>
+	<input type="button" id="enter_button" value="Send!" />
+</div>
+	
+</div>
+
+
+<script src="http://192.168.10.123:8080/socket.io/socket.io.js"></script>
+<script src="javascripts/client.js" type="text/javascript"></script>
 </body>
 </html>

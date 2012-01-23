@@ -1,0 +1,31 @@
+#previous_chat_section{
+	position:absolute;
+	background: #ccc;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 50px;
+	overflow: auto;
+}
+
+#current_chat_section{
+	position: absolute;
+	background: #aaa;
+	bottom: 0;
+	height: 50px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+#enter_button{
+	float: right;
+	margin: 15px;
+}
+
+#current_text{
+	width: 80%;
+	float: left;
+	margin: 15px;
+	left: 0;
+}
