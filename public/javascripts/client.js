@@ -19,13 +19,21 @@ $("#enter_button").click(function(){
 });
 
 socket.on('chat', function (data) {
-	console.log(data);
+	var sessionId = data.sessionId;
+	var messageBuffer = data.buffer;
 	
-	if (data instanceof Array) {
+	if(! $("div #"+sessionId).length > 0){
+		$("<div id='"+sessionId+"' class='user_chat'></div>").appendTo("#previous_chat_text");
+	}
+	$.each(messageBuffer, function(index, value) { 
+		$("div #"+sessionId).prepend(String(value.message)+'<br/>');
+	});
+	
+	/*if (data instanceof Array) {
 		$.each(data, function(index, value) { 
 		  $("#previous_chat_section").prepend(String(value.message)+'<br/>');
 		});
 	} else {
 		$("#previous_chat_section").prepend(String(data.message)+'<br/>');
-	}
+	}*/
 });
