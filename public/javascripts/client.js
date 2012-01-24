@@ -20,5 +20,12 @@ $("#enter_button").click(function(){
 
 socket.on('chat', function (data) {
 	console.log(data);
-	$("#previous_chat_section").append(String(data.message)+'<br/>');
+	
+	if (data instanceof Array) {
+		$.each(data, function(index, value) { 
+		  $("#previous_chat_section").append(String(value)+'<br/>');
+		});
+	} else {
+		$("#previous_chat_section").append(String(data.message)+'<br/>');
+	}
 });
