@@ -23,7 +23,7 @@ socket.on('chat', function (data) {
 	
 	if (data instanceof Array) {
 		$.each(data, function(index, value) { 
-		  $("#previous_chat_section").append(String(value)+'<br/>');
+		  $("#previous_chat_section").append(String(value.message)+'<br/>');
 		});
 	} else {
 		$("#previous_chat_section").append(String(data.message)+'<br/>');
