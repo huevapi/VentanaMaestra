@@ -18,8 +18,16 @@ var io = require('socket.io').listen(8080);
 var buffer = [];
 io.sockets.on('connection', function (socket) {
   socket.emit('chat', buffer);
-  socket.broadcast.emit('chat','Nuevo usuario conectado');
+  socket.broadcast.emit('chat',{ message: 'Nuevo usuario conectado.'});
+  console.log("Nuevo usuario conectado");
+  socket.on('chat',function (msg) {
+    //socket.emit('chat',msg);
+    socket.broadcast.emit('chat',{message: msg});
+    console.log("mensaje: " +  msg);
+    buffer.push({ message: msg});   
+  });
 });
+
 
 /*
 var buffer = [];
