@@ -6,7 +6,7 @@ $("#current_text").keypress(function(e){
 	code= (e.keyCode ? e.keyCode : e.which);
 	if (code == 13){
 		socket.emit('chat',$("#current_text").val());
-		$("#previous_chat_section").prepend(String($("#current_text").val())+'<br/>');
+		$("#local_chat").prepend(String($("#current_text").val())+'<br/>');
 		$("#current_text").val('');
 	}
 });
@@ -14,7 +14,7 @@ $("#current_text").keypress(function(e){
 $("#enter_button").click(function(){
 	console.log($("#current_text").val());
 	socket.emit('chat',$("#current_text").val());
-	$("#previous_chat_section").prepend(String($("#current_text").val())+'<br/>');
+	$("#local_chat").prepend(String($("#current_text").val())+'<br/>');
 	$("#current_text").val('');
 });
 
@@ -22,8 +22,10 @@ socket.on('chat', function (data) {
 	var sessionId = data.sessionId;
 	var messageBuffer = data.buffer;
 	
+	console.log('session id is ' + sessionId);
+	
 	if(! $("div #"+sessionId).length > 0){
-		$("<div id='"+sessionId+"' class='user_chat'></div>").appendTo("#previous_chat_text");
+		$("<div id='"+sessionId+"' class='user_chat'></div>").appendTo("#previous_chat_section");
 	}
 	$.each(messageBuffer, function(index, value) { 
 		$("div #"+sessionId).prepend(String(value.message)+'<br/>');

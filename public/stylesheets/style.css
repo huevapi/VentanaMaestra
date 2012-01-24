@@ -31,7 +31,10 @@
 }
 
 .user_chat{
-	height: 90px;
-	width: 120px;
+	height: 290px;
+	width: 320px;
 	overflow: auto;
+	background: #fff;
+	float:left;
+	border: 2px solid;
 }
